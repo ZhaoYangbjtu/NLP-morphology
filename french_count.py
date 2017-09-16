@@ -57,8 +57,8 @@ def french_count():
             f.add_arc('one_tenth', 'units', [str(ii)], [kFRENCH_TRANS[11]])
             f.add_arc('two_to_sixth_tenth', 'units', [str(ii)], [kFRENCH_AND + ' ' + kFRENCH_TRANS[ii]])
             f.add_arc('seven_tenth', 'units', [str(ii)], [kFRENCH_AND + ' ' + kFRENCH_TRANS[10 + ii]])
-            f.add_arc('eigth_tenth', 'units', [str(ii)], [kFRENCH_AND + ' ' + kFRENCH_TRANS[ii]])
-            f.add_arc('nine_tenth', 'units', [str(ii)], [kFRENCH_AND + ' ' + kFRENCH_TRANS[11]])
+            f.add_arc('eigth_tenth', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('nine_tenth', 'units', [str(ii)], [kFRENCH_TRANS[11]])
 
         if ii >=2 and ii <=6:
             f.add_arc('start', 'hundred', [str(ii)], [ kFRENCH_TRANS[ii] + ' ' + kFRENCH_TRANS[100]])
@@ -111,9 +111,12 @@ def french_count():
     return f
 
 if __name__ == '__main__':
-    string_input = raw_input()
+    '''string_input = raw_input()
     user_input = int(string_input)
     f = french_count()
     if string_input:
         print user_input, '-->',
-        print " ".join(f.transduce(prepare_input(user_input)))
+        print " ".join(f.transduce(prepare_input(user_input)))'''
+    f = french_count()
+    for i in range(0,1000):
+        print " ".join(f.transduce(prepare_input(i)))
