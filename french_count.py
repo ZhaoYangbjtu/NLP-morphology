@@ -22,10 +22,91 @@ def french_count():
     f.add_state('start')
     f.initial_state = 'start'
 
-    for ii in xrange(10):
-        f.add_arc('start', 'start', [str(ii)], [kFRENCH_TRANS[ii]])
+    f.add_state('hundred')
+    f.add_state('zero_at_hundredth')
+    f.add_state('zero_tenth')
+    f.add_state('zero_zero')
+    f.add_state('one_tenth')
+    f.add_state('two_to_sixth_tenth')
+    f.add_state('seven_tenth')
+    f.add_state('eigth_tenth')
+    f.add_state('nine_tenth')
+    f.add_state('units')
 
-    f.set_final('start')
+    f.set_final('units')
+
+    for ii in xrange(10):
+        if ii  == 0:
+            f.add_arc('start', 'zero_at_hundredth', [str(ii)] , ())
+            f.add_arc('zero_at_hundredth', 'zero_zero', [str(ii)], ())
+            f.add_arc('zero_zero', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('zero_tenth', 'units', [str(ii)], ())
+            f.add_arc('hundred', 'zero_tenth', [str(ii)], ())
+            f.add_arc('one_tenth', 'units', [str(ii)], [kFRENCH_TRANS[10]])
+            f.add_arc('two_to_sixth_tenth', 'units', [str(ii)], ())
+            f.add_arc('seven_tenth', 'units', [str(ii)], [kFRENCH_TRANS[10]])
+            f.add_arc('eigth_tenth', 'units', [str(ii)], ())
+            f.add_arc('nine_tenth', 'units', [str(ii)], [kFRENCH_TRANS[10]])
+
+        if ii == 1:
+            f.add_arc('start', 'hundred', [str(ii)], [kFRENCH_TRANS[100]])
+            f.add_arc('hundred', 'one_tenth', [str(ii)], ())
+            f.add_arc('zero_at_hundredth', 'one_tenth', [str(ii)], ())
+            f.add_arc('zero_zero', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('zero_tenth', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('one_tenth', 'units', [str(ii)], [kFRENCH_TRANS[11]])
+            f.add_arc('two_to_sixth_tenth', 'units', [str(ii)], [kFRENCH_AND + ' ' + kFRENCH_TRANS[ii]])
+            f.add_arc('seven_tenth', 'units', [str(ii)], [kFRENCH_AND + ' ' + kFRENCH_TRANS[10 + ii]])
+            f.add_arc('eigth_tenth', 'units', [str(ii)], [kFRENCH_AND + ' ' + kFRENCH_TRANS[ii]])
+            f.add_arc('nine_tenth', 'units', [str(ii)], [kFRENCH_AND + ' ' + kFRENCH_TRANS[11]])
+
+        if ii >=2 and ii <=6:
+            f.add_arc('start', 'hundred', [str(ii)], [ kFRENCH_TRANS[ii] + ' ' + kFRENCH_TRANS[100]])
+            f.add_arc('hundred', 'two_to_sixth_tenth', [str(ii)], [kFRENCH_TRANS[ii * 10]])
+            f.add_arc('zero_at_hundredth', 'two_to_sixth_tenth', [str(ii)], [kFRENCH_TRANS[ii * 10]])
+            f.add_arc('zero_zero', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('zero_tenth', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('one_tenth', 'units', [str(ii)], [kFRENCH_TRANS[10 + ii]])
+            f.add_arc('two_to_sixth_tenth', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('seven_tenth', 'units', [str(ii)], [kFRENCH_TRANS[ii + 10]])
+            f.add_arc('eigth_tenth', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('nine_tenth', 'units', [str(ii)], [kFRENCH_TRANS[ii + 10]])
+
+        if ii == 7:
+            f.add_arc('start', 'hundred', [str(ii)], [kFRENCH_TRANS[ii] + ' ' + kFRENCH_TRANS[100]])
+            f.add_arc('hundred', 'seven_tenth', [str(ii)], [kFRENCH_TRANS[60]])
+            f.add_arc('zero_at_hundredth', 'seven_tenth', [str(ii)], [kFRENCH_TRANS[60]])
+            f.add_arc('zero_zero', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('zero_tenth', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('one_tenth', 'units', [str(ii)], [kFRENCH_TRANS[10] + ' ' + kFRENCH_TRANS[ii]] )
+            f.add_arc('two_to_sixth_tenth', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('seven_tenth', 'units', [str(ii)], [kFRENCH_TRANS[10] + ' ' + kFRENCH_TRANS[ii]])
+            f.add_arc('eigth_tenth', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('nine_tenth', 'units', [str(ii)], [kFRENCH_TRANS[10] + ' ' + kFRENCH_TRANS[ii]]) 
+
+        if ii == 8:
+            f.add_arc('start', 'hundred', [str(ii)], [ kFRENCH_TRANS[ii] + ' ' + kFRENCH_TRANS[100]])
+            f.add_arc('hundred', 'eigth_tenth', [str(ii)], [kFRENCH_TRANS[4] + ' ' + kFRENCH_TRANS[20]])
+            f.add_arc('zero_at_hundredth', 'eigth_tenth', [str(ii)], [kFRENCH_TRANS[4] + ' ' + kFRENCH_TRANS[20]])
+            f.add_arc('zero_zero', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('zero_tenth', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('one_tenth', 'units', [str(ii)], [kFRENCH_TRANS[10] + ' ' + kFRENCH_TRANS[ii]])
+            f.add_arc('two_to_sixth_tenth', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('seven_tenth', 'units', [str(ii)], [kFRENCH_TRANS[10] + ' ' + kFRENCH_TRANS[ii]])
+            f.add_arc('eigth_tenth', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('nine_tenth', 'units', [str(ii)], [kFRENCH_TRANS[10] + ' ' + kFRENCH_TRANS[ii]])    
+
+        if ii == 9:
+            f.add_arc('start', 'hundred', [str(ii)], [kFRENCH_TRANS[ii] + ' ' + kFRENCH_TRANS[100]])
+            f.add_arc('hundred', 'nine_tenth', [str(ii)], [kFRENCH_TRANS[4] + ' ' + kFRENCH_TRANS[20]])
+            f.add_arc('zero_at_hundredth', 'nine_tenth', [str(ii)], [kFRENCH_TRANS[4] + ' ' + kFRENCH_TRANS[20]])
+            f.add_arc('zero_zero', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('zero_tenth', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('one_tenth', 'units', [str(ii)], [kFRENCH_TRANS[10] + ' ' + kFRENCH_TRANS[ii]])
+            f.add_arc('two_to_sixth_tenth', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('seven_tenth', 'units', [str(ii)], [kFRENCH_TRANS[10] + ' ' + kFRENCH_TRANS[ii]])
+            f.add_arc('eigth_tenth', 'units', [str(ii)], [kFRENCH_TRANS[ii]])
+            f.add_arc('nine_tenth', 'units', [str(ii)], [kFRENCH_TRANS[10] + ' ' + kFRENCH_TRANS[ii]]) 
 
     return f
 

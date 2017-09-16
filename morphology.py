@@ -22,6 +22,8 @@ def iterateRules():
     # if you need help with python regular expressions, see:
     #   http://docs.python.org/library/re.html
 
+    yield ("(.+)([aeiou]+)c\+(ed|ing)","\\1\\2ck\\3")
+
 def generate(analysis):
     word = analysis
     # apply all rules in sequence

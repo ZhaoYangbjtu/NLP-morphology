@@ -37,7 +37,7 @@ def letters_to_numbers():
     # Add the rest of the arcs
     for letter in string.ascii_lowercase + string.ascii_uppercase:
 
-        if letter in ['a', 'e', 'i', 'o', 'u', 'h', 'w', 'y']:
+        if letter in ['a', 'e', 'i', 'o', 'u', 'h', 'w', 'y', 'A', 'E', 'I', 'O', 'U', 'H', 'W', 'Y']:
             f1.add_arc('start','first_character', (letter), (letter))
             f1.add_arc('first_character', 'non_initial_remover', (letter), ())
             f1.add_arc('non_initial_remover', 'non_initial_remover', (letter),())
@@ -48,7 +48,7 @@ def letters_to_numbers():
             f1.add_arc('group_5', 'non_initial_remover', (letter), ())
             f1.add_arc('group_6', 'non_initial_remover', (letter), ())
 
-        if letter in ['b', 'f', 'p', 'v']:
+        if letter in ['b', 'f', 'p', 'v', 'B', 'F', 'P', 'V']:
             f1.add_arc('start','first_character', (letter), (letter))
             f1.add_arc('first_character','group_1', (letter), ('1'))
             f1.add_arc('non_initial_remover','group_1', (letter), ('1'))
@@ -59,7 +59,7 @@ def letters_to_numbers():
             f1.add_arc('group_6','group_1', (letter), ('1'))
             f1.add_arc('group_1', 'group_1', (letter), ())
 
-        if letter in ['c', 'g', 'j', 'k', 'q', 's', 'x', 'z']:
+        if letter in ['c', 'g', 'j', 'k', 'q', 's', 'x', 'z', 'C', 'G', 'J', 'K', 'Q', 'S', 'X', 'Z']:
             f1.add_arc('start','first_character', (letter), (letter))
             f1.add_arc('first_character','group_2', (letter), ('2'))
             f1.add_arc('non_initial_remover', 'group_2',(letter), ('2'))
@@ -70,7 +70,7 @@ def letters_to_numbers():
             f1.add_arc('group_6','group_2', (letter), ('2'))
             f1.add_arc('group_2', 'group_2', (letter), ())
 
-        if letter in ['d', 't']:
+        if letter in ['d', 't', 'D', 'T']:
             f1.add_arc('start','first_character', (letter), (letter))
             f1.add_arc('first_character','group_3', (letter), ('3'))
             f1.add_arc('non_initial_remover', 'group_3',(letter), ('3'))
@@ -81,7 +81,7 @@ def letters_to_numbers():
             f1.add_arc('group_6','group_3', (letter), ('3'))
             f1.add_arc('group_3', 'group_3', (letter), ())
 
-        if letter in ['l']:
+        if letter in ['l', 'L']:
             f1.add_arc('start','first_character', (letter), (letter))
             f1.add_arc('first_character','group_4', (letter), ('4'))
             f1.add_arc('non_initial_remover', 'group_4',(letter), ('4'))
@@ -92,7 +92,7 @@ def letters_to_numbers():
             f1.add_arc('group_6','group_4', (letter), ('4'))
             f1.add_arc('group_4', 'group_4', (letter), ())
 
-        if letter in ['m', 'n']:
+        if letter in ['m', 'n', 'M', 'N']:
             f1.add_arc('start','first_character', (letter), (letter))
             f1.add_arc('first_character','group_5', (letter), ('5'))
             f1.add_arc('non_initial_remover', 'group_5',(letter), ('5'))
@@ -103,7 +103,7 @@ def letters_to_numbers():
             f1.add_arc('group_6','group_5', (letter), ('5'))
             f1.add_arc('group_5', 'group_5', (letter), ())     
 
-        if letter in ['r']:
+        if letter in ['r', 'R']:
             f1.add_arc('start','first_character', (letter), (letter))
             f1.add_arc('first_character','group_6', (letter), ('6'))
             f1.add_arc('non_initial_remover', 'group_6',(letter), ('6'))
